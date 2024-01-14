@@ -81,7 +81,6 @@ const MyPage = () =>{
 
 const BookList = () => {
   return (
-    <EventExample/>
     <section className="FlexADD">
       {
         //Method 1
