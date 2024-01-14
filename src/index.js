@@ -70,39 +70,44 @@ const BOOKS = [
   },
 ];
 
+const MyPage = () =>{
+  return (
+    <section>
+      <EventExample/>
+      <BookList/>
+    </section>
+  );
+}
+
 const BookList = () => {
   return (
+    <EventExample/>
     <section className="FlexADD">
       {
-      
-      //Method 1
-
-      /* 
+        //Method 1
+        /* 
       <Book IMG={BOOK1.pic} TITLE={BOOK1.title} AUTHOR={BOOK1.aut}/>
       <Book IMG={BOOK2.pic} TITLE={BOOK2.title} AUTHOR={BOOK2.aut}/>
       <Book IMG={BOOK3.pic} TITLE={BOOK3.title} AUTHOR={BOOK3.aut}/>
       <Book IMG={BOOK4.pic} TITLE={BOOK4.title} AUTHOR={BOOK4.aut}/>
       <Book IMG={BOOK5.pic} TITLE={BOOK5.title} AUTHOR={BOOK5.aut}/> */
-      
       }
+        {
+          //Method 2
 
-      {
-      
-        //Method 2
+          BOOKS.map((BK) => {
+            const { /* pic,title,aut, */ id } = BK;
 
-        BOOKS.map((BK)=>{
-          const {/* pic,title,aut, */id} = BK;
+            //Method 1 : as sending the Object one by one
+            /* return <Book IMG={pic} TITLE = {title} AUTHOR = {aut} key={id}/> */
 
-          //Method 1 : as sending the Object one by one
-          /* return <Book IMG={pic} TITLE = {title} AUTHOR = {aut} key={id}/> */
+            //Method 2 : Sending the Whole Object And later Destructering.
+            /* return <Book book = {BK} key={id}/> */
 
-          //Method 2 : Sending the Whole Object And later Destructering.
-          /* return <Book book = {BK} key={id}/> */
-
-          //Method 3:
-          return <Book {...BK} key={id}/>
-        })
-      }
+            //Method 3:
+            return <Book {...BK} key={id} />;
+          })
+        }
     </section>
   );
 };
@@ -147,7 +152,28 @@ const Book = (/*Method 1:Destructuring : {book:{pic,title,aut}} */props) => {
   );
 };
 
+const EventExample =()=>{
+  
+  const onChangeHandle=()=>{
+    console.log("onChange Event invoked");
+  }
 
+  const onClickHandle=()=>{
+    console.log("onClick Event Invoked");
+    alert("Invoked onClick Event");
+  }
+  return (
+    <section>
+      <form>
+        <h2>This is Usual Form</h2>
+        <input type="text" name="example" style={{ margin: "1rem 0" }} 
+          onChange={onChangeHandle}
+        />
+      </form>
+      <button onClick={onClickHandle}>CLICK ME</button>
+    </section>
+  );
+}
 
 const Image = (props) => {
   return (
@@ -163,4 +189,6 @@ const Author = (props) => {
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<BookList />);
+/* root.render(<BookList />); */
+
+root.render(<MyPage/>)
