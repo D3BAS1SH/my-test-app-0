@@ -82,6 +82,7 @@ const MyPage = () =>{
 const BookList = () => {
   return (
     <section className="FlexADD">
+      <EventExample></EventExample>
       {
         //Method 1
         /* 
@@ -157,8 +158,9 @@ const EventExample =()=>{
     console.log("onChange Event invoked");
   }
 
-  const onClickHandle=()=>{
+  const onClickHandle=(e)=>{
     console.log("onClick Event Invoked");
+    console.log(e);
     alert("Invoked onClick Event");
   }
   return (
@@ -188,6 +190,6 @@ const Author = (props) => {
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-/* root.render(<BookList />); */
+root.render(<BookList />);
 
-root.render(<MyPage/>)
+/* root.render(<MyPage/>); */
