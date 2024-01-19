@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap');
+
 *{
     margin:0;
     padding:0;
@@ -31,7 +34,7 @@ img{
     width: min(100%,300px);
     height: 450px;
     margin: 1.5rem;
-    padding: 1.4rem;
+    padding: 1.8rem;
     border:2px solid #000;
     border-radius: 10px;
     /* justify-content: center; */
@@ -40,9 +43,9 @@ img{
 }
 
 .CardClass:hover{
-    box-shadow: 0 0 20px#444;
+    box-shadow: 0 0 10px#000,inset 0 0 30px #222;
     border-color: #222;
-    background-color: #444;
+    background-color: #333;
 }
 
 .CardClass h2::before,h1::before{
@@ -55,29 +58,85 @@ img{
     white-space: normal;
 }
 
-.makeitDown{
-
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    width: 254px;
-    height: 100px;
-    margin: 1px auto;
-    position: absolute;
-    bottom: 20px;
-    /* border:5px solid green; */
-    justify-content: center;
-}
-.ImgHolder{
-    /* object-fit:scale-down; */
-    width: 254px;
-    height: 304px;
-    /* border:5px solid red; */
-}
-
 .CardClass img{
     flex-grow: 1;
     border-radius: 4px;
+}
+.TxtHolder{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    margin: 0.3rem auto;
+    bottom: 20px;
+}
+
+.TxtHolder button{
+    display: block;
+}
+
+.TxtHolder h1{
+    /* margin-top: 10px; */
+    font-family: 'Satisfy';
+    font-size:x-large;
+}
+
+.TxtHolder h4{
+    margin-bottom: 10px;
+    font-family: 'EB Garamond';
+    font-weight: 580;
+}
+
+.ImgHolder{
+    /* object-fit:scale-down; */
+    width: auto;
+    height: fit-content;
+    /* border:5px solid red; */
+}
+
+.MyHeader{
+    font-size: 500%;
+    text-transform: capitalize;
+    text-align: center;
+    text-decoration: underline;
+    text-decoration-skip-ink: #3c70ff;
+}
+
+.ZoomOnHover{
+    transform: scale(1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.myHeaderBox{
+    width: 100%;
+    background-color: #3c70ff1a;
+    border:2px solid #3c70ff;
+    border-radius: 10px;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.myHeaderBox:hover{
+    box-shadow: inset 0px 5px 50px #111,0px 0px 10px #3c70ff;
+    /* transform: scale(1.2); */
+}
+.myHeaderBox:hover .ZoomOnHover{
+    transform: scale(1.05);
+}
+
+.IndxNum{
+    text-align: center;
+    width: 40px;
+    height: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #ee6323;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 @media screen and (min-width:1600px) {

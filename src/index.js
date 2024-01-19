@@ -1,12 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./style.css";
-import FWPIC from "./myReqs/20230822_123712.jpg";
-import IFPIC from "./myReqs/20231124_172144.jpg";
-import TAPIC from "./myReqs/IMG_20230820_131024.jpg";
-import NMPIC from "./myReqs/20230812_124906.jpg";
-import ITPIC from "./myReqs/20231106_230439.jpg";
-
+import BOOKS from './bookList'
+import Book from './Book'
 //Method 1
 
 /* const BOOK1 = {
@@ -37,39 +33,6 @@ const BOOK5 = {
 
 //Method 2
 
-const BOOKS = [
-  {
-    pic: FWPIC,
-    title: "FOURTH WING",
-    aut: "REBECCA YARROS",
-    id: 1,
-  },
-  {
-    pic: IFPIC,
-    title: "IRON FLAME",
-    aut: "REBECCA YARROS",
-    id: 2,
-  },
-  {
-    pic: TAPIC,
-    title: "THE ALCHEMIST",
-    aut: "PAULO COELHO",
-    id: 3,
-  },
-  {
-    pic: NMPIC,
-    title: "NO MATTER WHAT I WILL ALWAYS LOVE YOU",
-    aut: "ROHIT DAWESAR",
-    id: 4,
-  },
-  {
-    pic: ITPIC,
-    title: "IN THE PRESENCE OF ABSENCE",
-    aut: "MOHOMMUD DARWISH",
-    id: 5,
-  },
-];
-
 const MyPage = () => {
   return (
     <section>
@@ -79,35 +42,46 @@ const MyPage = () => {
 };
 
 const BookList = () => {
+
+  const getBook=(id)=>{
+    const book = BOOKS.find((book)=> book.id===id );
+    console.log(book);
+  }
+
   return (
-    <section className="FlexADD">
-      {/* <EventExample></EventExample> */}
-      {
-        //Method 1
-        /* 
+    <>
+      <header className="myHeaderBox">
+        <h1 className="MyHeader ZoomOnHover">my books</h1>
+      </header>
+      <section className="FlexADD">
+        {/* <EventExample></EventExample> */}
+        {
+          //Method 1
+          /* 
       <Book IMG={BOOK1.pic} TITLE={BOOK1.title} AUTHOR={BOOK1.aut}/>
       <Book IMG={BOOK2.pic} TITLE={BOOK2.title} AUTHOR={BOOK2.aut}/>
       <Book IMG={BOOK3.pic} TITLE={BOOK3.title} AUTHOR={BOOK3.aut}/>
       <Book IMG={BOOK4.pic} TITLE={BOOK4.title} AUTHOR={BOOK4.aut}/>
       <Book IMG={BOOK5.pic} TITLE={BOOK5.title} AUTHOR={BOOK5.aut}/> */
-      }
-      {
-        //Method 2
+        }
+        {
+          //Method 2
 
-        BOOKS.map((BK) => {
-          const { /* pic,title,aut, */ id } = BK;
+          BOOKS.map((BK, index) => {
+            const { /* pic,title,aut, */ id } = BK;
 
-          //Method 1 : as sending the Object one by one
-          /* return <Book IMG={pic} TITLE = {title} AUTHOR = {aut} key={id}/> */
+            //Method 1 : as sending the Object one by one
+            /* return <Book IMG={pic} TITLE = {title} AUTHOR = {aut} key={id}/> */
 
-          //Method 2 : Sending the Whole Object And later Destructering.
-          /* return <Book book = {BK} key={id}/> */
+            //Method 2 : Sending the Whole Object And later Destructering.
+            /* return <Book book = {BK} key={id}/> */
 
-          //Method 3:
-          return <Book {...BK} key={id} />;
-        })
-      }
-    </section>
+            //Method 3:
+            return <Book {...BK} key={id} getBook={getBook} number={index} />;
+          })
+        }
+      </section>
+    </>
   );
 };
 
@@ -129,27 +103,6 @@ const BookList = () => {
 }; */
 
 //Method 2
-
-const Book = (/*Method 1:Destructuring : {book:{pic,title,aut}} */ props) => {
-  //Method 2 : take the parameter as object and then destructure it.
-  const { pic, title, aut } = props;
-
-  console.log(pic + "," + title + "," + aut);
-  return (
-    //Method : Setting Values from the destructured Parameter.
-
-    <article className="CardClass">
-      <div className="ImgHolder">
-        <Image img={pic} title={title} auth={aut} />
-      </div>
-      <div className="makeitDown">
-        <Title title={title} />
-        <Author author={aut} />
-        <button onClick={(e)=>{console.log("["+title+","+aut+"]")}}>GET CONTENT</button>
-      </div>
-    </article>
-  );
-};
 
 /* const EventExample = () => {
   const onChangeHandle = (e) => {
@@ -192,22 +145,8 @@ const Book = (/*Method 1:Destructuring : {book:{pic,title,aut}} */ props) => {
   );
 }; */
 
-const Image = (props) => {
-  return (
-    <img
-      src={props.img}
-      alt={props.title + " BY " + props.auth}
-      width={300}
-      height={300}
-    />
-  );
-};
-const Title = (props) => {
-  return <h4>{props.title}</h4>;
-};
-const Author = (props) => {
-  return <h1>{props.author}</h1>;
-};
+
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
